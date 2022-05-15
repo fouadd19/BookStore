@@ -20,13 +20,21 @@ const Card = ({ book }) => {
         if (thumbnail !== undefined && amount !== undefined) {
           return (
             <>
-              <Grid item xs={4} key={item.id}>
+              <Grid
+                item
+                xl={4}
+                md={6}
+                xs={12}
+                alignContent="center"
+                key={item.id}
+              >
                 <Paper
                   elevation={3}
                   onClick={() => {
                     setShow(true);
                     setItem(item);
                   }}
+                  sx={{ height: '100%' }}
                 >
                   <img src={thumbnail} alt=" " className="img" />
                   <Box paddingX={1}>

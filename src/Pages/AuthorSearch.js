@@ -9,34 +9,32 @@ const AuthorSearch = () => {
   const [search, setSearch] = useState('');
   const [bookData, setData] = useState([]);
 
-  const searchBook = (evt) => {
-    if (evt.key === 'Enter') {
-      axios
-        .get(
-          'https://www.googleapis.com/books/v1/volumes?q=' +
-            search +
-            '&key=AIzaSyAUgS8kR0QcRL_XYgeKiZaH-pehxUs7D-k'
-        )
-        .then((res) => {
-          console.log(res.data.items);
-          setData(
-            res.data.items
-              .filter((item) => {
-                return (
-                  item.accessInfo.epub.isAvailable ||
-                  item.accessInfo.pdf.isAvailable
-                );
-              })
-              .sort(function (a, b) {
-                return (
-                  new Date(b.volumeInfo.publishedDate) -
-                  new Date(a.volumeInfo.publishedDate)
-                );
-              })
-          );
-        })
-        .catch((err) => console.log(err));
-    }
+  const searchBook = (term) => {
+    axios
+      .get(
+        'https://www.googleapis.com/books/v1/volumes?q=' +
+          term +
+          '&maxResults=40&key=AIzaSyAUgS8kR0QcRL_XYgeKiZaH-pehxUs7D-k'
+      )
+      .then((res) => {
+        console.log(res.data.items);
+        setData(
+          res.data.items
+            .filter((item) => {
+              return (
+                item.accessInfo.epub.isAvailable ||
+                item.accessInfo.pdf.isAvailable
+              );
+            })
+            .sort(function (a, b) {
+              return (
+                new Date(b.volumeInfo.publishedDate) -
+                new Date(a.volumeInfo.publishedDate)
+              );
+            })
+        );
+      })
+      .catch((err) => console.log(err));
   };
   return (
     <div>
@@ -50,7 +48,10 @@ const AuthorSearch = () => {
                 type="text"
                 placeholder="Enter your author search"
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  searchBook(e.target.value);
+                }}
                 onKeyPress={searchBook}
               />
             </div>
@@ -63,7 +64,7 @@ const AuthorSearch = () => {
 
         <div className="row2">
           <Container>
-            <Grid container spacing={1}>
+            <Grid container spacing={2}>
               {<Card book={bookData} />}
             </Grid>
           </Container>

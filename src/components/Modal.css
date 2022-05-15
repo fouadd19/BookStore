@@ -22,6 +22,10 @@
     overflow: hidden;
     font-size: 1.3rem;
 }
+.info{
+    border-spacing: 10px;
+    margin-left: 10px;
+}
 
 .overlay-inner .close {
     position: absolute;
@@ -41,8 +45,8 @@
 
 .overlay-inner .inner-box img{
     margin-right: 20px;
-    width: 150px;
-    height: 200px;
+    width: 40%;
+    height: 200%;
 }
 
 .overlay-inner .inner-box h3{
@@ -52,13 +56,9 @@
 
 .overlay-inner .inner-box h4{
     margin-top: 10px;
-    color: blue;
+    color: grey;
 }
 
-.overlay-inner .inner-box h5{
-    margin-top: 10px;
-    color: rgb(255, 0, 0);
-}
 
 .overlay-inner .inner-box button{
     outline: none;
@@ -71,3 +71,8 @@
     padding: 0.3rem 0.5rem;
 }
 
+.overlay-inner .description{
+    margin-top: 2rem;
+    text-align: justify;
+    font-size: 13px;
+}

@@ -17,14 +17,15 @@ const Modal = ({ show, item, onClose }) => {
             <CloseIcon />
           </button>
           <div className="inner-box">
+            <img src={thumbnail} alt="" />
             <div className="info">
-              <h2>Title: {item.volumeInfo.title}</h2>
-              <h3>authors: {item.volumeInfo.authors}</h3>
-              <h4>Page-Count: {item.volumeInfo.pageCount}</h4>
-              <h5>
+              <h1>{item.volumeInfo.title}</h1>
+              <h3>{item.volumeInfo.authors}</h3>
+              <h4>{item.volumeInfo.pageCount} Pages</h4>
+              <h4>
                 Publisher: {item.volumeInfo.publisher} <br />
                 Language: {item.volumeInfo.language}
-              </h5>
+              </h4>
               <br />
               <a href={item.volumeInfo.previewLink}>
                 <button>More</button>
