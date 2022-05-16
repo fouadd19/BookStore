@@ -13,28 +13,15 @@ const AuthorSearch = () => {
     axios
       .get(
         'https://www.googleapis.com/books/v1/volumes?q=' +
+          '+inauthor:' +
           term +
-          '&maxResults=40&key=AIzaSyAUgS8kR0QcRL_XYgeKiZaH-pehxUs7D-k'
+          '&orderBy=newest&projection=full&maxResults=40&key=AIzaSyAUgS8kR0QcRL_XYgeKiZaH-pehxUs7D-k'
       )
       .then((res) => {
         console.log(res.data.items);
-        setData(
-          res.data.items
-            .filter((item) => {
-              return (
-                item.accessInfo.epub.isAvailable ||
-                item.accessInfo.pdf.isAvailable
-              );
-            })
-            .sort(function (a, b) {
-              return (
-                new Date(b.volumeInfo.publishedDate) -
-                new Date(a.volumeInfo.publishedDate)
-              );
-            })
-        );
+        setData(res.data.items);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(`Error while searching for the result`));
   };
   return (
     <div>
