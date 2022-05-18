@@ -39,7 +39,6 @@ const AuthorSearch = () => {
                   setSearch(e.target.value);
                   searchBook(e.target.value);
                 }}
-                onKeyPress={searchBook}
               />
             </div>
           </div>
